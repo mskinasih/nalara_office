@@ -11,10 +11,10 @@ const prisma = new PrismaClient({ adapter })
 async function main() {
     await prisma.pricing.createMany({
         data: [
-            { jenjang: "SD", type: "private", price: 30000 },
-            { jenjang: "SD", type: "kelompok", price: 20000 },
-            { jenjang: "SMP", type: "private", price: 40000 },
-            { jenjang: "SMP", type: "kelompok", price: 30000 },
+            { jenjang: "sd", type: "private", price: 30000 },
+            { jenjang: "sd", type: "kelompok", price: 20000 },
+            { jenjang: "smp", type: "private", price: 40000 },
+            { jenjang: "smp", type: "kelompok", price: 30000 },
         ],
         skipDuplicates: true,
     })
