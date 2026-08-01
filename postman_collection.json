@@ -1,8 +1,7 @@
 {
     "info": {
-        "_postman_id": "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
-        "name": "Nalara Invoice API",
-        "description": "API endpoints for the Nalara Invoice application",
+        "name": "Nalara Backend API",
+        "description": "API endpoints for the Nalara Backend application",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
@@ -10,33 +9,35 @@
             "name": "Students",
             "item": [
                 {
+                    "name": "Get All Students",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/students",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "students"]
+                        }
+                    }
+                },
+                {
                     "name": "Create Student",
                     "request": {
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"name\": \"John Doe\",\n  \"jenjang\": \"SMP\",\n  \"type\": \"private\",\n  \"kelas\": \"9\",\n  \"isLongDistance\": false\n}"
+                            "raw": "{\n  \"name\": \"John Doe\",\n  \"jenjang\": \"smp\",\n  \"type\": \"private\",\n  \"kelas\": \"9\",\n  \"isLongDistance\": false\n}"
                         },
                         "url": {
                             "raw": "http://localhost:3000/api/students",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "3000",
-                            "path": [
-                                "api",
-                                "students"
-                            ]
+                            "path": ["api", "students"]
                         }
-                    },
-                    "response": []
+                    }
                 }
             ]
         },
@@ -44,15 +45,23 @@
             "name": "Invoices",
             "item": [
                 {
+                    "name": "Get All Invoices",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/invoices",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "invoices"]
+                        }
+                    }
+                },
+                {
                     "name": "Create Invoice",
                     "request": {
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
                         "body": {
                             "mode": "raw",
                             "raw": "{\n  \"studentId\": \"REPLACE_WITH_STUDENT_ID\",\n  \"month\": 3,\n  \"year\": 2026,\n  \"sessionCount\": 4\n}"
@@ -60,18 +69,83 @@
                         "url": {
                             "raw": "http://localhost:3000/api/invoices",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "3000",
-                            "path": [
-                                "api",
-                                "invoices"
-                            ]
-                        },
-                        "description": "Create an invoice for a student"
-                    },
-                    "response": []
+                            "path": ["api", "invoices"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Pricing",
+            "item": [
+                {
+                    "name": "Get Pricing",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/pricing",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "pricing"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Schedules",
+            "item": [
+                {
+                    "name": "Get Schedules",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/schedules",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "schedules"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Attendances",
+            "item": [
+                {
+                    "name": "Get Attendances",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/attendances",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "attendances"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Reports",
+            "item": [
+                {
+                    "name": "Get Reports",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/api/reports",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "3000",
+                            "path": ["api", "reports"]
+                        }
+                    }
                 }
             ]
         }
