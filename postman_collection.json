@@ -4,6 +4,13 @@
         "description": "API endpoints for the Nalara Backend application",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "https://nalaraoffice.vercel.app",
+            "type": "string"
+        }
+    ],
     "item": [
         {
             "name": "Students",
@@ -13,10 +20,8 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/students",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/students",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "students"]
                         }
                     }
@@ -31,11 +36,36 @@
                             "raw": "{\n  \"name\": \"John Doe\",\n  \"jenjang\": \"smp\",\n  \"type\": \"private\",\n  \"kelas\": \"9\",\n  \"isLongDistance\": false\n}"
                         },
                         "url": {
-                            "raw": "http://localhost:3000/api/students",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/students",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "students"]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Student",
+                    "request": {
+                        "method": "PUT",
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"John Doe Updated\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/students/REPLACE_WITH_STUDENT_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "students", "REPLACE_WITH_STUDENT_ID"]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Student",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrl}}/api/students/REPLACE_WITH_STUDENT_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "students", "REPLACE_WITH_STUDENT_ID"]
                         }
                     }
                 }
@@ -49,10 +79,8 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/invoices",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/invoices",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "invoices"]
                         }
                     }
@@ -67,11 +95,36 @@
                             "raw": "{\n  \"studentId\": \"REPLACE_WITH_STUDENT_ID\",\n  \"month\": 3,\n  \"year\": 2026,\n  \"sessionCount\": 4\n}"
                         },
                         "url": {
-                            "raw": "http://localhost:3000/api/invoices",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/invoices",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "invoices"]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Invoice Status",
+                    "request": {
+                        "method": "PUT",
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"status\": \"paid\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/invoices/REPLACE_WITH_INVOICE_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "invoices", "REPLACE_WITH_INVOICE_ID"]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Invoice",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrl}}/api/invoices/REPLACE_WITH_INVOICE_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "invoices", "REPLACE_WITH_INVOICE_ID"]
                         }
                     }
                 }
@@ -85,11 +138,52 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/pricing",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/pricing",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "pricing"]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Pricing",
+                    "request": {
+                        "method": "POST",
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"jenjang\": \"sma\",\n  \"type\": \"private\",\n  \"price\": 50000\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/pricing",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "pricing"]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Pricing",
+                    "request": {
+                        "method": "PUT",
+                        "header": [{"key": "Content-Type", "value": "application/json"}],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"price\": 35000\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/pricing/REPLACE_WITH_PRICING_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "pricing", "REPLACE_WITH_PRICING_ID"]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Pricing",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrl}}/api/pricing/REPLACE_WITH_PRICING_ID",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["api", "pricing", "REPLACE_WITH_PRICING_ID"]
                         }
                     }
                 }
@@ -103,10 +197,8 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/schedules",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/schedules",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "schedules"]
                         }
                     }
@@ -121,10 +213,8 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/attendances",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/attendances",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "attendances"]
                         }
                     }
@@ -139,10 +229,8 @@
                     "request": {
                         "method": "GET",
                         "url": {
-                            "raw": "http://localhost:3000/api/reports",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3000",
+                            "raw": "{{baseUrl}}/api/reports",
+                            "host": ["{{baseUrl}}"],
                             "path": ["api", "reports"]
                         }
                     }

@@ -9,21 +9,19 @@ export async function PUT(
         const id = (await params).id;
         const body = await req.json()
 
-        const student = await prisma.student.update({
+        const pricing = await prisma.pricing.update({
             where: { id },
             data: {
-                ...(body.name && { name: body.name }),
+                price: body.price,
                 ...(body.jenjang && { jenjang: body.jenjang }),
                 ...(body.type && { type: body.type }),
-                ...(body.kelas && { kelas: body.kelas }),
-                ...(body.isLongDistance !== undefined && { isLongDistance: body.isLongDistance }),
             },
         })
 
-        return NextResponse.json(student)
+        return NextResponse.json(pricing)
     } catch (error) {
         console.error(error)
-        return NextResponse.json({ error: "Failed to update student" }, { status: 500 })
+        return NextResponse.json({ error: "Failed to update pricing" }, { status: 500 })
     }
 }
 
@@ -33,13 +31,13 @@ export async function DELETE(
 ) {
     try {
         const id = (await params).id;
-        await prisma.student.delete({
+        await prisma.pricing.delete({
             where: { id },
         })
 
         return NextResponse.json({ success: true })
     } catch (error) {
         console.error(error)
-        return NextResponse.json({ error: "Failed to delete student" }, { status: 500 })
+        return NextResponse.json({ error: "Failed to delete pricing" }, { status: 500 })
     }
 }
