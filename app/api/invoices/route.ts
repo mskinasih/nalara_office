@@ -64,7 +64,10 @@ export async function POST(req: Request) {
         }
 
         const pricing = await prisma.pricing.findFirst({
-            where: { jenjang: student.jenjang, type: student.type }
+            where: { 
+                jenjang: { equals: student.jenjang, mode: 'insensitive' }, 
+                type: { equals: student.type, mode: 'insensitive' } 
+            }
         })
         if (!pricing) {
             return NextResponse.json({ error: "Pricing not found for this student" }, { status: 404 })
