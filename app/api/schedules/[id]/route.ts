@@ -26,7 +26,7 @@ export async function PUT(
                 ...(endTime ? { endTime } : {}),
             },
             include: {
-                student: { select: { id: true, name: true, kelas: true } }
+                student: true
             }
         })
 

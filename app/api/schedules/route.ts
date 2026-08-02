@@ -9,9 +9,7 @@ export async function GET(req: Request) {
     const schedules = await prisma.schedule.findMany({
         where: studentId ? { studentId } : undefined,
         include: {
-            student: {
-                select: { id: true, name: true, kelas: true }
-            }
+            student: true
         },
         orderBy: { day: "asc" }
     })
@@ -48,7 +46,7 @@ export async function POST(req: Request) {
         const schedule = await prisma.schedule.create({
             data: { studentId, day, startTime, endTime },
             include: {
-                student: { select: { id: true, name: true, kelas: true } }
+                student: true
             }
         })
 
