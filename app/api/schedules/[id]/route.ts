@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma"
-import { Day } from "@prisma/client"
+
 import { NextResponse } from "next/server"
 
 export async function PUT(
@@ -9,19 +9,12 @@ export async function PUT(
     try {
         const { id } = await params
         const body = await req.json()
-        const { day, startTime, endTime } = body
-
-        if (day && !Object.values(Day).includes(day as Day)) {
-            return NextResponse.json(
-                { error: `day must be one of: ${Object.values(Day).join(", ")}` },
-                { status: 400 }
-            )
-        }
+        const { date, startTime, endTime } = body
 
         const schedule = await prisma.schedule.update({
             where: { id },
             data: {
-                ...(day ? { day } : {}),
+                ...(date ? { date: new Date(date) } : {}),
                 ...(startTime ? { startTime } : {}),
                 ...(endTime ? { endTime } : {}),
             },

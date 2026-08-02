@@ -14,15 +14,7 @@ enum InvoiceStatus {
   unpaid
 }
 
-enum Day {
-  Senin
-  Selasa
-  Rabu
-  Kamis
-  Jumat
-  Sabtu
-  Minggu
-}
+
 
 enum AttendanceStatus {
   Hadir
@@ -71,10 +63,10 @@ model Invoice {
 }
 
 model Schedule {
-  id        String  @id @default(cuid())
-  student   Student @relation(fields: [studentId], references: [id])
+  id        String   @id @default(cuid())
+  student   Student  @relation(fields: [studentId], references: [id])
   studentId String
-  day       Day
+  date      DateTime @db.Date
   startTime String
   endTime   String
 }

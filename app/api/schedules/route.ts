@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma"
-import { Day } from "@prisma/client"
+
 import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
@@ -11,7 +11,7 @@ export async function GET(req: Request) {
         include: {
             student: true
         },
-        orderBy: { day: "asc" }
+        orderBy: { date: "asc" }
     })
 
     return NextResponse.json(schedules)
@@ -21,19 +21,11 @@ export async function POST(req: Request) {
     try {
         const body = await req.json()
 
-        const { studentId, day, startTime, endTime } = body
+        const { studentId, date, startTime, endTime } = body
 
-        if (!studentId || !day || !startTime || !endTime) {
+        if (!studentId || !date || !startTime || !endTime) {
             return NextResponse.json(
-                { error: "studentId, day, startTime, and endTime are required" },
-                { status: 400 }
-            )
-        }
-
-        // Validate day enum
-        if (!Object.values(Day).includes(day as Day)) {
-            return NextResponse.json(
-                { error: `day must be one of: ${Object.values(Day).join(", ")}` },
+                { error: "studentId, date, startTime, and endTime are required" },
                 { status: 400 }
             )
         }
@@ -44,7 +36,12 @@ export async function POST(req: Request) {
         }
 
         const schedule = await prisma.schedule.create({
-            data: { studentId, day, startTime, endTime },
+            data: { 
+                studentId, 
+                date: new Date(date), 
+                startTime, 
+                endTime 
+            },
             include: {
                 student: true
             }
