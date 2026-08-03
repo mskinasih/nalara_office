@@ -128,77 +128,73 @@ export default async function InvoiceDetailPage({
                             {/* END: Header Section */}
 
                             {/* BEGIN: Service & Meta Info */}
-                            <section className="grid grid-cols-12 gap-8 mb-12 border-b border-slate-100 pb-12">
-                                {/* Student Info */}
-                                <div className="col-span-4 border-r border-slate-100 pr-8">
-                                    <h2 className="text-[10px] font-bold tracking-[0.2em] text-[#00A36C] uppercase mb-6">Informasi Siswa</h2>
-
-                                    <div className="grid grid-cols-2 gap-4 mb-6">
-                                        <div>
-                                            <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Nama Siswa</label>
-                                            <p className="text-lg font-bold text-slate-900">{invoice.student.name}</p>
-                                        </div>
-                                        <div>
-                                            <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Jenjang</label>
-                                            <p className="text-lg font-bold text-slate-900">{invoice.student.jenjang}</p>
-                                        </div>
+                            <section className="mb-8">
+                                <div className="bg-[#f8fcf9] border border-[#00A36C]/20 p-6 rounded-xl flex items-center justify-between">
+                                    <div>
+                                        <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Ditagihkan Kepada (Nama Siswa)</label>
+                                        <p className="text-lg font-bold text-slate-900">{invoice.student.name}</p>
                                     </div>
-
-                                    <div className="grid grid-cols-2 gap-4 mb-8">
-                                        <div>
-                                            <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Kelas</label>
-                                            <p className="text-sm font-bold text-slate-900">{invoice.student.kelas}</p>
-                                        </div>
-                                        <div>
-                                            <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Tipe</label>
-                                            <p className="text-sm font-bold text-slate-900 capitalize">{invoice.student.type}</p>
-                                        </div>
+                                    <div className="h-10 w-px bg-slate-200"></div>
+                                    <div>
+                                        <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Jenjang</label>
+                                        <p className="text-base font-bold text-slate-900">{invoice.student.jenjang}</p>
+                                    </div>
+                                    <div className="h-10 w-px bg-slate-200"></div>
+                                    <div>
+                                        <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Kelas</label>
+                                        <p className="text-base font-bold text-slate-900">{invoice.student.kelas}</p>
+                                    </div>
+                                    <div className="h-10 w-px bg-slate-200"></div>
+                                    <div>
+                                        <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1">Tipe Bimbingan</label>
+                                        <p className="text-base font-bold text-slate-900 capitalize">{invoice.student.type}</p>
                                     </div>
                                 </div>
+                            </section>
 
-                                {/* Line Items Table */}
-                                <div className="col-span-8 pl-4">
-                                    <table className="w-full text-sm">
-                                        <thead>
-                                            <tr className="text-[10px] uppercase text-slate-400 font-bold tracking-widest border-b border-slate-100">
-                                                <th className="text-left pb-4">Deskripsi</th>
-                                                <th className="text-right pb-4 px-4">Harga / Sesi</th>
-                                                <th className="text-right pb-4 px-4">Jumlah (Sesi)</th>
-                                                <th className="text-right pb-4">Subtotal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-slate-50">
+                            <section className="mb-8 border-b border-slate-100 pb-8">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="text-[10px] uppercase text-slate-400 font-bold tracking-widest border-b border-slate-100">
+                                            <th className="text-left pb-4">Deskripsi</th>
+                                            <th className="text-right pb-4 px-4">Harga / Sesi</th>
+                                            <th className="text-right pb-4 px-4">Jumlah (Sesi)</th>
+                                            <th className="text-right pb-4">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-50">
+                                        <tr>
+                                            <td className="py-5 font-bold text-slate-900">
+                                                Biaya Les ({MONTHS[invoice.month - 1]} {invoice.year})
+                                            </td>
+                                            <td className="py-5 px-4 text-right font-medium text-slate-600">{formatRupiah(invoice.basePrice)}</td>
+                                            <td className="py-5 px-4 text-right font-medium text-slate-600">{invoice.sessionCount}</td>
+                                            <td className="py-5 text-right font-bold text-slate-900">{formatRupiah(invoice.basePrice * invoice.sessionCount)}</td>
+                                        </tr>
+                                        {invoice.transportPrice > 0 && (
                                             <tr>
-                                                <td className="py-6 font-bold text-slate-900">
-                                                    Biaya Les ({MONTHS[invoice.month - 1]} {invoice.year})
+                                                <td className="py-5 font-bold text-slate-900">
+                                                    Biaya Transport Tambahan
+                                                    <span className="block text-xs text-slate-500 font-normal mt-1">Siswa luar area (&gt;5km)</span>
                                                 </td>
-                                                <td className="py-6 px-4 text-right font-medium text-slate-600">{formatRupiah(invoice.basePrice)}</td>
-                                                <td className="py-6 px-4 text-right font-medium text-slate-600">{invoice.sessionCount}</td>
-                                                <td className="py-6 text-right font-bold text-slate-900">{formatRupiah(invoice.basePrice * invoice.sessionCount)}</td>
+                                                <td className="py-5 px-4 text-right font-medium text-slate-600">{formatRupiah(invoice.transportPrice)}</td>
+                                                <td className="py-5 px-4 text-right font-medium text-slate-600">{invoice.sessionCount}</td>
+                                                <td className="py-5 text-right font-bold text-slate-900">{formatRupiah(invoice.transportPrice * invoice.sessionCount)}</td>
                                             </tr>
-                                            {invoice.transportPrice > 0 && (
-                                                <tr>
-                                                    <td className="py-6 font-bold text-slate-900">
-                                                        Biaya Transport Tambahan
-                                                        <span className="block text-xs text-slate-500 font-normal mt-1">Siswa luar area (&gt;5km)</span>
-                                                    </td>
-                                                    <td className="py-6 px-4 text-right font-medium text-slate-600">{formatRupiah(invoice.transportPrice)}</td>
-                                                    <td className="py-6 px-4 text-right font-medium text-slate-600">{invoice.sessionCount}</td>
-                                                    <td className="py-6 text-right font-bold text-slate-900">{formatRupiah(invoice.transportPrice * invoice.sessionCount)}</td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
+                                        )}
+                                    </tbody>
+                                </table>
 
-                                    {/* Financial Summary */}
-                                    <div className="mt-8 border-t border-slate-100 pt-6">
-                                        <div className="flex justify-end gap-16 mb-2">
+                                {/* Financial Summary */}
+                                <div className="mt-6 flex justify-end">
+                                    <div className="w-1/2">
+                                        <div className="flex justify-between mb-4">
                                             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Subtotal</span>
                                             <span className="text-sm font-bold text-slate-700">{formatRupiah(invoice.total)}</span>
                                         </div>
-                                        <div className="flex justify-end items-center gap-12 border-t-2 border-[#00A36C] pt-6">
-                                            <span className="text-base font-bold text-slate-900 uppercase tracking-widest">Total Tagihan</span>
-                                            <span className="text-4xl font-black text-[#00A36C]">{formatRupiah(invoice.total)}</span>
+                                        <div className="flex justify-between items-center border-t-2 border-[#00A36C] pt-4">
+                                            <span className="text-sm font-bold text-slate-900 uppercase tracking-widest">Total Tagihan</span>
+                                            <span className="text-3xl font-black text-[#00A36C]">{formatRupiah(invoice.total)}</span>
                                         </div>
                                     </div>
                                 </div>
